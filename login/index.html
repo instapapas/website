@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log In | instapapas</title>
+
+  <link rel="stylesheet" href="/libs/bulma.css" />
+  <script src="/libs/vue.js"></script>
+  <script defer src="/libs/fontawesome-all.js"></script>
+
+  <link rel="stylesheet" href="/libs/style.css" />
+  <script src="/libs/utils.js"></script>
+</head>
+
+<body>
+  <div id="components">
+    <navigation-bar></navigation-bar>
+  </div>
+  <script src="/libs/components.js"></script>
+
+  <div class="section">
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left">
+        <input class="input" type="text" id="username" autofocus>
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control has-icons-left">
+        <input class="input" type="password" id="password">
+        <span class="icon is-small is-left">
+          <i class="fas fa-key"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-info" onclick="submit()">
+          Log in
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

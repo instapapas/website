@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>instapapas</title>
+
+  <link rel="stylesheet" href="/libs/bulma.css" />
+  <script src="/libs/vue.js"></script>
+  <script defer src="/libs/fontawesome-all.js"></script>
+
+  <link rel="stylesheet" href="/libs/style.css" />
+  <script src="/libs/utils.js"></script>
+</head>
+
+<body>
+  <div id="components">
+    <navigation-bar></navigation-bar>
+  </div>
+  <script src="/libs/components.js"></script>
+
+  <div id="app" class="section">
+    <div class="columns is-multiline is-desktop">
+      <div class="column is-one-quarter-desktop" v-for="(img, index) in images">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">{{img.name}}</p>
+            <br>
+          </header>
+          <div class="card-image">
+            <figure class="image">
+              <img :src="IMG_URL + img.imageId">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div v-for="comment in img.comments">
+              <p>
+                <b>{{comment.username}}</b> {{comment.text}}
+              </p>
+            </div>
+            <a v-on:click="getComments(img, img.comments.length + 5)">Load more...</a>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" v-on:click="upvote(img)">
+              <span class="icon">
+                <i class="far fa-thumbs-up outline"></i>
+              </span>
+              <span>{{img.upvotes}}</span>
+            </a>
+            <a class="card-footer-item" v-on:click="downvote(img)">
+              <span class="icon">
+                <i class="far fa-thumbs-down outline"></i>
+              </span>
+              <span>{{img.downvotes}}</span>
+            </a>
+            <a class="card-footer-item" v-on:click="img.commentBox = !img.commentBox">
+              <span class="icon">
+                <i class="far fa-comments outline"></i>
+              </span>
+              <span>{{img.commentsAmount}}</span>
+            </a>
+          </footer>
+          <footer class="card-footer" v-if="img.commentBox">
+            <div class="control field is-center">
+              <input class="input" type="text" placeholder="Comment..." :id="img.imageId+'-comment'">
+            </div>
+            <a class="card-footer-item" v-on:click="comment(img, document.getElementById(img.imageId+'-comment'))">
+              <span class="icon">
+                <i class="fas fa-check"></i>
+              </span>
+            </a>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
