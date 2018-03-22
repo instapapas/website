@@ -1,7 +1,5 @@
-// const API_URL = 'https://api.instapapas.matiascontilde.com/';
-// const IMG_URL = 'https://api.instapapas.matiascontilde.com/img/';
-const API_URL = 'http://localhost:3000/';
-const IMG_URL = 'http://localhost:3000/img/';
+const API_URL = 'https://api.instapapas.matiascontilde.com/';
+const IMG_URL = 'https://api.instapapas.matiascontilde.com/img/';
 
 const request = (method, endpoint, data, callback) => {
   const xhr = new XMLHttpRequest();
