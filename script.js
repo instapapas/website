@@ -35,7 +35,7 @@ const app = new Vue({
       }, res => {
         console.log('comment', res);
         if (res) {
-          img.comments.push({
+          img.commentsArray.push({
             userId: localStorage.getItem('userId'),
             text: input.value,
             username: ''
@@ -44,8 +44,8 @@ const app = new Vue({
           img.commentBox = false;
           input.value = '';
 
-          this.username(img.comments[img.comments.length - 1]);
-          img.commentsAmount++;
+          this.username(img.commentsArray[img.commentsArray.length - 1]);
+          img.comments++;
         }
       });
     },
@@ -54,7 +54,7 @@ const app = new Vue({
         imageId: img.imageId,
         amount: amount
       }, res => {
-        img.comments = res.map(val => {
+        img.commentsArray = res.map(val => {
           return {
             userId: val.userId,
             text: val.text,
@@ -62,7 +62,7 @@ const app = new Vue({
           };
         });
 
-        for (comment of img.comments) {
+        for (comment of img.commentsArray) {
           this.username(comment);
         }
       });
@@ -87,18 +87,14 @@ if (location.search.length > 0) {
     name: location.search.substring(1)
   }, res => {
     app.images = res.map(val => {
-      val.commentsAmount = new Number(val.comments);
-      val.comments = [];
-      val.commentBox = false;
+      val.commentsArray = [];
       return val;
     });;
   });
 } else {
   request('GET', 'all-images', {}, res => {
     app.images = res.map(val => {
-      val.commentsAmount = new Number(val.comments);
-      val.comments = [];
-      val.commentBox = false;
+      val.commentsArray = [];
       return val;
     });
   });

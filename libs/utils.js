@@ -1,12 +1,13 @@
 const API_URL = 'https://api.instapapas.matiascontilde.com/';
 const IMG_URL = 'https://api.instapapas.matiascontilde.com/img/';
+// const API_URL = 'http://localhost:3000/';
+// const IMG_URL = 'http://localhost:3000/img/';
 
 const request = (method, endpoint, data, callback) => {
   const xhr = new XMLHttpRequest();
 
   if (method === 'POST file') {
     xhr.open('POST', `${API_URL}${endpoint}`, true);
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     let formData = new FormData();
     for (key in data) {
@@ -25,12 +26,12 @@ const request = (method, endpoint, data, callback) => {
 
     if (method === 'GET') {
       xhr.open('GET', `${API_URL}${endpoint}?${sendData}`, true);
+      xhr.send();
     } else if (method === 'POST') {
       xhr.open('POST', `${API_URL}${endpoint}`, true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.send(sendData);
     }
-
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send(sendData);
   }
 
   xhr.onreadystatechange = () => {

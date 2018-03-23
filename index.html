@@ -34,12 +34,12 @@
             </figure>
           </div>
           <div class="card-content">
-            <div v-for="comment in img.comments">
+            <div v-for="comment in img.commentsArray">
               <p>
                 <b>{{comment.username}}</b> {{comment.text}}
               </p>
             </div>
-            <a v-on:click="getComments(img, img.comments.length + 5)">Load more...</a>
+            <a v-on:click="getComments(img, img.commentsArray.length + 5)" v-show="img.commentsArray.length < img.comments">Load more...</a>
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" v-on:click="upvote(img)">
@@ -58,7 +58,7 @@
               <span class="icon">
                 <i class="far fa-comments outline"></i>
               </span>
-              <span>{{img.commentsAmount}}</span>
+              <span>{{img.comments}}</span>
             </a>
           </footer>
           <footer class="card-footer" v-if="img.commentBox">
