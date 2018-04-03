@@ -88,6 +88,7 @@ if (location.search.length > 0) {
   }, res => {
     app.images = res.map(val => {
       val.commentsArray = [];
+      val.commentBox = false;
       return val;
     });;
   });
@@ -95,6 +96,7 @@ if (location.search.length > 0) {
   request('GET', 'all-images', {}, res => {
     app.images = res.map(val => {
       val.commentsArray = [];
+      val.commentBox = false;
       return val;
     });
   });

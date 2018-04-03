@@ -39,7 +39,7 @@
                 <b>{{comment.username}}</b> {{comment.text}}
               </p>
             </div>
-            <a v-on:click="getComments(img, img.commentsArray.length + 5)" v-show="img.commentsArray.length < img.comments">Load more...</a>
+            <a v-on:click="getComments(img, img.commentsArray.length + 5)" v-if="img.commentsArray.length < img.comments">Load more...</a>
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" v-on:click="upvote(img)">
@@ -61,7 +61,7 @@
               <span>{{img.comments}}</span>
             </a>
           </footer>
-          <footer class="card-footer" v-if="img.commentBox">
+          <footer class="card-footer" v-show="img.commentBox">
             <div class="control field is-center">
               <input class="input" type="text" placeholder="Comment..." :id="img.imageId+'-comment'">
             </div>
